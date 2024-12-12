@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bqjsh2avgxd6n"]
+
+[ext_resource type="Texture2D" uid="uid://b70cpf7hrqwfp" path="res://assets/kenny-platformer-industrial/platformerPack_industrial_tilesheet.png" id="1_odtxo"]
+[ext_resource type="Script" path="res://gear.gd" id="2_tek5r"]
+
+[node name="Gear" type="Sprite2D"]
+texture = ExtResource("1_odtxo")
+region_enabled = true
+region_rect = Rect2(700, 280, 70, 70)
+script = ExtResource("2_tek5r")

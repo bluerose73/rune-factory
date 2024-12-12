@@ -1,0 +1,66 @@
+[gd_scene load_steps=9 format=3 uid="uid://b82gtrib1s8qo"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_hye65"]
+[ext_resource type="Texture2D" uid="uid://dx8daxt377f0s" path="res://assets/kenny-platformer-characters/Adventurer/adventurer_tilesheet.png" id="1_v1sls"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ak0vj"]
+atlas = ExtResource("1_v1sls")
+region = Rect2(320, 0, 80, 110)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3s55a"]
+atlas = ExtResource("1_v1sls")
+region = Rect2(0, 0, 80, 110)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7wha3"]
+atlas = ExtResource("1_v1sls")
+region = Rect2(0, 110, 80, 110)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q3drm"]
+atlas = ExtResource("1_v1sls")
+region = Rect2(80, 110, 80, 110)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ub276"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ak0vj")
+}],
+"loop": true,
+"name": &"dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3s55a")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7wha3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q3drm")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_n7jac"]
+height = 78.0
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_hye65")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1, -55)
+sprite_frames = SubResource("SpriteFrames_ub276")
+animation = &"dead"
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -39)
+shape = SubResource("CapsuleShape2D_n7jac")

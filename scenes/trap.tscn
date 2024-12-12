@@ -1,0 +1,69 @@
+[gd_scene load_steps=9 format=3 uid="uid://cfmd7s21q7v1y"]
+
+[ext_resource type="Script" path="res://scripts/trap.gd" id="1_5jfgh"]
+[ext_resource type="Texture2D" uid="uid://b70cpf7hrqwfp" path="res://assets/kenny-platformer-industrial/platformerPack_industrial_tilesheet.png" id="1_b0d4g"]
+[ext_resource type="Script" path="res://scripts/indicator.gd" id="3_gsywo"]
+[ext_resource type="PackedScene" uid="uid://blbgx1h6lame1" path="res://scenes/kill_zone.tscn" id="4_5w2gx"]
+[ext_resource type="Script" path="res://scripts/spike.gd" id="4_res34"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tiato"]
+size = Vector2(70, 72)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ycpos"]
+size = Vector2(64, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g1cx0"]
+size = Vector2(76, 172)
+
+[node name="Trap" type="Node2D"]
+script = ExtResource("1_5jfgh")
+
+[node name="Block" type="StaticBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Block"]
+texture = ExtResource("1_b0d4g")
+region_enabled = true
+region_rect = Rect2(0, 210, 70, 70)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Block"]
+shape = SubResource("RectangleShape2D_tiato")
+
+[node name="Indicator" type="Node2D" parent="."]
+script = ExtResource("3_gsywo")
+
+[node name="RedSprite" type="Sprite2D" parent="Indicator"]
+position = Vector2(0, -70)
+texture = ExtResource("1_b0d4g")
+region_enabled = true
+region_rect = Rect2(770, 212, 70, 68)
+
+[node name="BlueSprite" type="Sprite2D" parent="Indicator"]
+visible = false
+position = Vector2(0, -70)
+texture = ExtResource("1_b0d4g")
+region_enabled = true
+region_rect = Rect2(700, 140, 70, 70)
+
+[node name="Spike" type="Node2D" parent="."]
+script = ExtResource("4_res34")
+
+[node name="Sprite2D" type="Sprite2D" parent="Spike"]
+position = Vector2(1, 71)
+texture = ExtResource("1_b0d4g")
+region_enabled = true
+region_rect = Rect2(630, 140, 70, 70)
+
+[node name="KillZone" parent="Spike" instance=ExtResource("4_5w2gx")]
+position = Vector2(-12, 49)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Spike/KillZone"]
+position = Vector2(12, -3)
+shape = SubResource("RectangleShape2D_ycpos")
+
+[node name="Detection" type="Area2D" parent="Spike"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Spike/Detection"]
+position = Vector2(0, 146)
+shape = SubResource("RectangleShape2D_g1cx0")
+
+[connection signal="body_entered" from="Spike/Detection" to="Spike" method="_on_detection_body_entered"]

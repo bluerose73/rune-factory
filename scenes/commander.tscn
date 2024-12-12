@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://8g3cyk1m6d6n"]
+
+[ext_resource type="Texture2D" uid="uid://cdxsxawpavimh" path="res://assets/kenny-platformer-characters/Soldier/soldier_tilesheet.png" id="1_heytf"]
+[ext_resource type="PackedScene" uid="uid://ciginycyh45j2" path="res://scenes/interactable.tscn" id="2_mn6ho"]
+[ext_resource type="Script" path="res://scripts/interact_handler_commander.gd" id="3_ycq53"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_x2tfv"]
+radius = 35.0
+
+[node name="Commander" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -47)
+texture = ExtResource("1_heytf")
+region_enabled = true
+region_rect = Rect2(9, 18, 63, 92)
+
+[node name="Interactable" parent="." instance=ExtResource("2_mn6ho")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable"]
+position = Vector2(0, -37)
+shape = SubResource("CircleShape2D_x2tfv")
+
+[node name="InteractHandler" type="Node" parent="Interactable"]
+script = ExtResource("3_ycq53")
+
+[node name="SpeechLabel" type="Label" parent="."]
+offset_left = -249.0
+offset_top = -189.0
+offset_right = 251.0
+offset_bottom = -109.0
+theme_override_font_sizes/font_size = 28
+horizontal_alignment = 1

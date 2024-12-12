@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://djcoen7egk0od"]
+
+[ext_resource type="Script" path="res://hunger_meter.gd" id="1_wvw8p"]
+[ext_resource type="Texture2D" uid="uid://do5xrhthw14e7" path="res://assets/food.png" id="2_geh2a"]
+[ext_resource type="Texture2D" uid="uid://c4be7qngchshc" path="res://assets/food_dark.png" id="3_w0bmc"]
+
+[node name="HungerMeter" type="Node2D"]
+script = ExtResource("1_wvw8p")
+
+[node name="ColorSprite" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(2, 2)
+texture = ExtResource("2_geh2a")
+region_enabled = true
+region_rect = Rect2(157, 344, 19, 19)
+
+[node name="DarkSprite" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("3_w0bmc")

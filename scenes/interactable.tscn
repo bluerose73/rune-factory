@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://ciginycyh45j2"]
+
+[ext_resource type="Script" path="res://scripts/interactable.gd" id="1_41vtd"]
+
+[node name="Interactable" type="Area2D"]
+script = ExtResource("1_41vtd")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = -19.0
+offset_top = -148.0
+offset_right = 20.0
+offset_bottom = -71.0
+theme_override_font_sizes/font_size = 48
+text = "Z"
+horizontal_alignment = 1
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

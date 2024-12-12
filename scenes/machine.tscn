@@ -1,0 +1,69 @@
+[gd_scene load_steps=10 format=3 uid="uid://ec18tivequfk"]
+
+[ext_resource type="PackedScene" uid="uid://bqjsh2avgxd6n" path="res://scenes/gear.tscn" id="1_q4g7y"]
+[ext_resource type="Script" path="res://scripts/machine.gd" id="1_smjt0"]
+[ext_resource type="PackedScene" uid="uid://blbgx1h6lame1" path="res://scenes/kill_zone.tscn" id="3_63dll"]
+[ext_resource type="PackedScene" uid="uid://ciginycyh45j2" path="res://scenes/interactable.tscn" id="4_14cam"]
+[ext_resource type="Script" path="res://scripts/interact_handler_machine.gd" id="5_jnp5g"]
+[ext_resource type="Texture2D" uid="uid://b70cpf7hrqwfp" path="res://assets/kenny-platformer-industrial/platformerPack_industrial_tilesheet.png" id="6_4nwwo"]
+[ext_resource type="Texture2D" uid="uid://bmhdudu7gmqp8" path="res://assets/kenny-space-shooter/playerShip1_blue.png" id="7_yjm0x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tbolq"]
+size = Vector2(174, 204)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_htqnc"]
+radius = 35.1283
+
+[node name="Machine" type="Node2D"]
+script = ExtResource("1_smjt0")
+
+[node name="Gear" parent="." instance=ExtResource("1_q4g7y")]
+position = Vector2(-62, -35)
+
+[node name="Gear2" parent="." instance=ExtResource("1_q4g7y")]
+position = Vector2(69, -31)
+
+[node name="Gear3" parent="." instance=ExtResource("1_q4g7y")]
+position = Vector2(68, -173)
+
+[node name="Gear4" parent="." instance=ExtResource("1_q4g7y")]
+position = Vector2(-63, -173)
+
+[node name="Gear5" parent="." instance=ExtResource("1_q4g7y")]
+position = Vector2(0, -208)
+
+[node name="Gear6" parent="." instance=ExtResource("1_q4g7y")]
+position = Vector2(-63, -105)
+
+[node name="Gear7" parent="." instance=ExtResource("1_q4g7y")]
+position = Vector2(69, -101)
+
+[node name="Gear8" parent="." instance=ExtResource("1_q4g7y")]
+position = Vector2(0, -34)
+
+[node name="KillZone" parent="." instance=ExtResource("3_63dll")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KillZone"]
+position = Vector2(0, -102)
+shape = SubResource("RectangleShape2D_tbolq")
+
+[node name="Interactable" parent="." instance=ExtResource("4_14cam")]
+position = Vector2(0, -102)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable"]
+shape = SubResource("CircleShape2D_htqnc")
+
+[node name="InteractHandler" type="Node" parent="Interactable"]
+script = ExtResource("5_jnp5g")
+
+[node name="FillingSprite" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -102)
+texture = ExtResource("6_4nwwo")
+region_enabled = true
+region_rect = Rect2(630, 420, 70, 70)
+
+[node name="MissileSprite" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -102)
+texture = ExtResource("7_yjm0x")
